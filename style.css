@@ -1,137 +1,175 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
-
-*{
+/* Reset and base styles */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
-body{
+body {
+    background-image: url('./image/wallpaperflare.com_wallpaper (22).jpg'); /* Replace with your background image path */
+    background-size: cover;
+    background-repeat: repeat-y; /* Repeat the background image vertically */
+    background-attachment: scroll; /* Ensure the background scrolls with the content */
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #000; /* Black background */
+    padding: 20px 0; /* Adjust padding as needed */
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /* Ensure items are spaced evenly */
     align-items: center;
-    min-height: 100vh;
-    background: #cbc9e8;
+    position: relative; /* Ensure z-index works */
+    z-index: 100; /* Ensure navbar stays on top */
 }
 
-.wrapper .title{
-    text-align: center;
-}
-
-.title h4{
-    display: inline-block;
-    padding: 20px;
-    color: #585757;
-    font-size: 50px;
-    font-weight: 500;
-    letter-spacing: 1.2px;
-    word-spacing: 5px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    text-transform: uppercase;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-    word-wrap: break-word;
-}
-
-.wrapper .card_Container{
-    position: relative;
+.navbar-logo {
     display: flex;
-    justify-content: center;
     align-items: center;
+    color: white;
+    font-family: 'Young Heart', cursive; /* Replace with the actual font name */
+    margin-left: 20px; /* Adjust margin as needed */
+}
+
+.navbar-logo img {
+    width: 130px; /* Adjust logo size */
+    margin-right: -55px;
+}
+
+.logo-text {
+    font-size: 1.9rem; /* Adjust font size as needed */
+}
+
+.navbar-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center align buttons */
+    flex-grow: 1; /* Allow the buttons to take up available space */
+}
+
+.navbar-buttons .btn {
+    margin: 0 5px; /* Adjust button spacing */
+    border-radius: 0; /* Remove button border-radius */
+}
+
+.navbar-shape {
+    width: 1px; /* Adjust the width of the shape */
+    height: 50px; /* Adjust the height of the shape */
+    background-color: white;
+    margin: 0 10px; /* Adjust spacing between shapes and buttons */
+}
+
+/* Container styles */
+.container {
+    display: flex;
     flex-wrap: wrap;
-    margin: 40px 0;
-}
-
-.card_Container .card{
-    position: relative;
-    width: 300px;
-    height: 400px;
-    margin: 20px;
-    overflow: hidden;
-    box-shadow: 0 30px 30px -20px rgba(0, 0, 0, 1),
-                inset 0 0 0 1000px rgba(67, 52, 109, .6);
-    border-radius: 15px;
-    display: flex;
     justify-content: center;
-    align-items: center;
+    padding: 2rem;
 }
 
-.card .imbBx, .imbBx img{
+/* Card styles */
+.card {
+    position: relative;
+    width: 200px; /* Set the width of each card */
+    height: 300px; /* Set the height of each card */
+    margin: 1rem;
+    cursor: pointer;
+}
+
+/* Image Box styles */
+.imgBx {
+    position: relative;
+    width: 100%;
+    height: 100%; /* Ensure image box fills the card */
+}
+
+.imgBx img {
     width: 100%;
     height: 100%;
+    object-fit: cover; /* Ensure images fit well */
+    border-radius: 10px;
 }
 
-.card .content{
+/* Animation styles */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px); /* Adjust the bounce height */
+    }
+}
+
+.small-logo {
+    animation: bounce 1.5s ease-in-out infinite; /* Adjust animation duration and timing function as needed */
+}
+
+
+
+/* Details overlay */
+.details-overlay {
     position: absolute;
-    bottom: -160px;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 160px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 -10px 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    transition: bottom 0.5s;
-    transition-delay: 0.65s;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: 10px;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
-.card:hover .content{
-    bottom: 0;
-    transition-delay: 0s;
+.card:hover .details-overlay {
+    opacity: 1;
 }
 
-.content .contentBx h3{
-    text-transform: uppercase;
-    color: #fff;
-    letter-spacing: 2px;
-    font-weight: 500;
-    font-size: 18px;
+.details-overlay h3,
+.details-overlay p {
+    margin: 0;
     text-align: center;
-    margin: 20px 0 15px;
-    line-height: 1.1em;
-    transition: 0.5s;
-    transition-delay: 0.6s;
-    opacity: 0;
-    transform: translateY(-20px);
 }
 
-.card:hover .content .contentBx h3{
-    opacity: 1;
-    transform: translateY(0);
+.details-overlay p {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
 }
 
-.content .contentBx h3 span{
-    font-size: 12px;
-    font-weight: 300;
-    text-transform: initial;
-}
-
-.content .sci{
-    position: relative;
-    bottom: 10px;
+/* Social icons styles */
+.sci {
+    list-style-type: none;
+    padding: 0;
     display: flex;
+    justify-content: center;
+    margin-top: 1rem;
 }
 
-.content .sci li{
-    list-style: none;
-    margin: 0 10px;
-    transform: translateY(40px);
-    transition: 0.5s;
-    opacity: 0;
-    transition-delay: calc(0.2s * var(--i));
+.sci li {
+    margin: 0 0.5rem;
 }
 
-.card:hover .content .sci li{
-    transform: translateY(0);
-    opacity: 1;
+.sci li a {
+    color: white;
+    font-size: 1.2rem;
 }
 
-.content .sci li a{
-    color: #fff;
-    font-size: 24px;
+/* Category title styles */
+.category-title {
+    width: 100%;
+    text-align: center;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    background-color: transparent;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
 }
